@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-import django_heroku
+#import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '767md98$t)&u(@xcb7erujkc!k#vql-u$@_o$8zco(l9b9+@el'
+SECRET_KEY = '767md98$t)&u(@xcasdasdb7erujkc!k#vql-u$@_o$8zco(l9b9+@el'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -119,5 +119,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-django_heroku.settings(locals())
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Add the following line to serve the pdfs directory
+STATICFILES_DIRS += [
+    os.path.join(BASE_DIR, 'static', 'pdfs'),
+    os.path.join(BASE_DIR, 'static', 'css'),
+    os.path.join(BASE_DIR, 'static', 'js')
+]

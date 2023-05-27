@@ -1,37 +1,36 @@
 {% extends 'mysite/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <div class="row" style="margin-top: 100px">
-            <div class="col-sm-6">
-                <form class="form-inline" action="{% url 'home' %}" method="post">
-                    {% csrf_token %}
-                    <label class="sr-only" for="inlineFormInputName2">First Name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                           placeholder="First Name" name="fname">
-
-                    <label class="sr-only" for="inlineFormInputName2">Last Name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                           placeholder="Last Name" name="lname">
-
-
-                    <button type="submit" class="btn btn-secondary mb-2">Tell me a Chuck Norris Joke!</button>
-                </form>
+    {% if not hide_content and user.is_authenticated %}
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-6">
+                    <form class="mb-4" id="chat-form">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="message-input" placeholder="Message" name="message">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card" style="width: 40rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Chuck Norris</h5>
-                        <p class="card-text">
-                            {{ joker }}
-
-                        </p>
-                        <a href="{% url 'portfolio' %}" class="card-link">Check out my portfolio</a>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-body" id="message-display">
+                            <h5 class="card-title">Generated Response</h5>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    {% else %}
+        <div class="container">
+            <h3 class="mt-5">Please log in to access the content.</h3>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        </div>
+    {% endif %}
 
-
-    </div>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'mysite/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 mx-auto" style="margin-top: 70px">
+                <div style="height: 800px;">
+                    <embed src="{% static 'pdfs/Profile.pdf' %}" width="100%" height="100%" type="application/pdf" style="border: 1px solid #ccc;">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
