@@ -5,6 +5,13 @@ from django.contrib.auth import logout
 import requests
 from bs4 import BeautifulSoup
 import openai
+ 
+from dotenv import load_dotenv
+
+# Load variables from .env file
+load_dotenv()
+import os
+
 
 
 def login_view(request):
@@ -23,7 +30,7 @@ def login_view(request):
     else:
         return render(request, 'mysite/login.html')
 
-openai.api_key = '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'
+openai.api_key = os.getenv("OPENAI_API")
 
 @login_required(login_url='login')
 
