@@ -1,1 +1,11 @@
-*.log
+# Ignore compiled Python files
+*.pyc
+.env
+# Ignore virtual environment directories
+myenv/
+venv/
+
+# Ignore sensitive information
+secret.txt
+tmp
+*.sqlite3
